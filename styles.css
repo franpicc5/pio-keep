@@ -1,0 +1,105 @@
+* {
+    margin: 0px;
+
+}
+
+
+/*inicio de las boludeces que agregué*/
+
+body {
+    background-color: rgb(51, 51, 51);
+    font-family: "Nunito", sans-serif;
+}
+
+h4 {
+    margin-top: 10px;
+}
+
+h5 {
+    margin-top: -9px;
+    opacity: 0.9;
+}
+
+h2 {
+    padding-bottom: 50px;
+    font-size: 40px;
+}
+
+#loginForm, #notepad {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    color: white;
+    text-align: center;
+}
+
+#inicio-sesion, #registro, #busqueda-notas, #nueva-nota, #mostrar-nota, #buscar-nota, #todas-notas {
+    background-color: rgb(32, 32, 32);
+    border-radius: 23px;
+}
+
+#inicio-sesion button, #registro button, #notepad button {
+    background-color: rgb(68, 68, 68);
+    color: white;
+    border-radius: 20px;
+    border-width: 0px;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+#inicio-sesion button:hover, #registro button:hover, #notepad button:hover {
+    opacity: 0.8;
+}
+
+#email, #password, #username, #title, #content, #category, #selectNote, #searchByContent {
+    background-color: rgb(46, 46, 46);
+    border-radius: 30px;
+    border-width: 0px;
+    color: white;
+    padding-left: 15px;
+}
+
+#allNotes div {
+    background-color: rgb(46, 46, 46);
+    border-radius: 30px;
+    border-width: 0px;
+    color: white;
+    padding-top: 25px;
+}
+
+/*fin de las boludeces que agregué*/
+
+
+
+header {
+    background-color: aqua;
+    display: block;
+    border: 0.1rem black solid;
+    height: 3em;
+}
+
+.navbar {
+    text-align: left;
+    font-size: 1.7em;
+}
+
+#texto {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#foto {
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+footer {
+    margin-top: 0.3em;
+    background-color: gainsboro;
+    border: 0.1rem black solid;
+}
+
+footer img {
+    width: 3em;
+}
