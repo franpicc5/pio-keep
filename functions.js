@@ -39,14 +39,19 @@ function mostrarNotas() {
 
 window.mostrarNotas = mostrarNotas;
 
-notes[0].update("Plantillas de momos :v", "Patricio, ¿estás loco?, ¡Abduzkhan!, Ella no te ama :,v, ¡Oh, mi lente de contacto :,,,V", "Humor", [1]);
-notes[1].update("Acordes menores", "Do menor (Cm), Re menor (Dm), Mi menor (Em), Fa menor (Fm), Sol menor (Gm), La menor (Am), Si menor (Bm)", "Música", [2]);
-notes[2].update("Dirección de La Jungla", "Güemes 4744,C1425BNT, C1425BNT Cdad. Autónoma de Buenos Aires", "Direcciones", [3]);
+
+notes[0].modifications.push(new Modification(notes[0].title, notes[0].content, notes[0].category, '2025-04-24', 1));
+notes[0].update("Plantillas de momos :v", "Patricio, ¿estás loco?, ¡Abduzkhan!, Ella no te ama :,v, ¡Oh, mi lente de contacto :,,,V", "Humor");
+notes[1].modifications.push(new Modification(notes[1].title, notes[1].content, notes[1].category, '2025-04-25', 2));
+notes[1].update("Acordes menores", "Do menor (Cm), Re menor (Dm), Mi menor (Em), Fa menor (Fm), Sol menor (Gm), La menor (Am), Si menor (Bm)", "Música");
+notes[2].modifications.push(new Modification(notes[2].title, notes[2].content, notes[2].category, '2025-04-26', 3));
+notes[2].update("Dirección de La Jungla", "Güemes 4744,C1425BNT, C1425BNT Cdad. Autónoma de Buenos Aires", "Direcciones");
 
 function loadNotes(userId) {
     for (let note of notes) {
         for (let user of note.users) {
             if (user == userId) {
+                ui.addNoteToSelect(note.noteId, note.title)
                 ui.createNote(note.noteId, note.title, note.content, note.category)
             }
         }
@@ -72,9 +77,9 @@ window.userExists = userExists;
 function login() {
     let userId = userExists(ui.getEmail(), ui.getPassword());
     if (userId == -1) {
-        alert("Error: \n No se encontró ningún usuario con ese email.");
+        alert("Error:\nNo se encontró ningún usuario con ese email");
     } else if (userId == 0) {
-        alert("Error: \n Contraseña incorrecta.");
+        alert("Error:\nContraseña incorrecta");
     } else {
         activeId = userId
         loadNotes(userId);
@@ -144,10 +149,10 @@ window.confirmLogout = confirmLogout
 
 function createNote(title, content, category, userId) {
     notes.push(new Note(title, content, category, userId));
-    return notes[notes.length - 1].noteId
+    return notes[notes.length - 1].noteId;
 }
 
-window.createNote = createNote
+window.createNote = createNote;
 
 function newNote() {
     let title = ui.getNoteTitle();
@@ -158,16 +163,53 @@ function newNote() {
     }
     else {
         let editorsId = [];
-        editorsId.push(activeId);
+        editorsId.push(activeId); 
         ui.createNote(createNote(title, content, category, editorsId), title, content, category);
+        ui.addNoteToSelect(notes[notes.length - 1].noteId, title)
         alert("La nota fue generada correctamente");
         console.log(notes)
     }
 }
 
-window.newNote = newNote
+window.newNote = newNote;
 
-function modificationNote(title, content, category) {
-    notes[0].update("Plantillas de momos :v", "Patricio, ¿estás loco?, ¡Abduzkhan!, Ella no te ama :,v, ¡Oh, mi lente de contacto :,,,V", "Humor", [1]);
-    return notes[notes.length - 1].noteId
+function showNoteThroughConsole() {
+    let selectedNoteId = ui.getSelectedNote();
+    for (let note of notes) {
+        if (note.noteId == selectedNoteId) {
+            console.log(note);
+        }
+    }
 }
+
+window.showNoteThroughConsole = showNoteThroughConsole;
+
+function deleteNote(id) {
+    for (let i = 0; i < notes.length; i++) {
+        if (notes[i].noteId == id) {
+            notes.splice(i, 1);
+            return true;
+        }
+    }
+    return false;
+}
+
+window.deleteNote = deleteNote;
+
+function eraseNote(id) {
+    let noteErased = deleteNote(id);
+    if (noteErased) {
+        ui.removeNote(id);
+        alert("La nota se ha eliminado correctamente");
+    } else {
+        alert("Hubo un error al eliminar la nota");
+    }
+}
+
+window.eraseNote = eraseNote;
+
+function editNote(id) {
+    console.log(notes);
+}
+
+window.editNote = editNote;
